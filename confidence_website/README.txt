@@ -1,3 +1,1 @@
-front end for [project confidence](http://www.projectconfidence.space)
-
-http://github.com
+front end for projectconfidence.space
