@@ -1,2 +1,2 @@
 # confidence_frontend
-front end for http://projectconfidence.space
+front end for http://www.projectconfidence.space/
