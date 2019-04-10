@@ -19,7 +19,7 @@ const fullArrayLength = 10000; // if one reading every 1 ms for 10 seconds
 $(document).ready(function(){
   $(document).mousemove(function(event){
     //$("#mPos").text(event.pageX + ", " + event.pageY);
-    updateTracking(event.pageX + " " + event.pageY);
+    updateTracking(event.pageX, event.pageY);
   });
 });
 
@@ -33,23 +33,24 @@ function updateTracking(xPos, yPos) {
   // Update array if not null
   if(whichMovement != null) {
     // Deal with case where mouse has been stationary
-
     whichMovement.push([xPos, yPos]);
-
   }
 }
 
 // Called when answerButton clicked
 function answerChosen() {
+  alert("len: " + whichMovement.length);
   // pad array until full if not full
- if(whichMovement.length != fullArrayLength) {
+ if(whichMovement != null && whichMovement.length != fullArrayLength) {
+   alert("padding array");
    for(i=whichMovement.length; i<fullArrayLength; i++) {
-     whichMovement.push([0,0]);
+     whichMovement.push([0, 0]);
    }
+   alert(whichMovement);
  }
+  alert("len: " + whichMovement.length);
   // Stop updating array
-  whichMovement = null
-  alert(whichMovement);
+  whichMovement = null;
 }
 
 
@@ -78,21 +79,24 @@ function changeText() {
     // Display results after 5 questions
     doResults();
   }
-  alert(whichMovement);
+ // Increment questionCount
+  questionCount++;
+
+  alert("whichMovement: " + whichMovement);
   // Change which array to update
-  if(whichMovement == movement1) {
+  if(questionCount == 1) {
     whichMovement = movement2;
-  } else if(whichMovement == movement2) {
+  } else if(questionCount == 2) {
     whichMovement = movement3;
-  } else if(whichMovement == movement3) {
+  } else if(questionCount == 3) {
     whichMovement = movement4;
-  } else if(whichMovement == movement4) {
+  } else if(questionCount == 4) {
     whichMovement = movement5;
   } else {
     whichMovement = null;
   }
-
-  questionCount++;
+  alert("questionCount: " + questionCount);
+  alert("whichMovement: " + whichMovement);
 }
 
 function changeButtonColor(id) {
