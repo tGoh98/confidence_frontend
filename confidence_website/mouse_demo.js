@@ -18,8 +18,8 @@ const fullArrayLength = 10000; // if one reading every 1 ms for 10 seconds
 // jQuery to get mousemovement
 $(document).ready(function(){
   $(document).mousemove(function(event){
-    //$("#mPos").text(event.pageX + ", " + event.pageY);
-    updateTracking(event.pageX, event.pageY);
+    $("#mPos").text(event.pageX + ", " + event.pageY);
+    //updateTracking(event.pageX, event.pageY);
   });
 });
 
@@ -39,16 +39,13 @@ function updateTracking(xPos, yPos) {
 
 // Called when answerButton clicked
 function answerChosen() {
-  alert("len: " + whichMovement.length);
   // pad array until full if not full
  if(whichMovement != null && whichMovement.length != fullArrayLength) {
-   alert("padding array");
+   //alert("padding array");
    for(i=whichMovement.length; i<fullArrayLength; i++) {
      whichMovement.push([0, 0]);
    }
-   alert(whichMovement);
  }
-  alert("len: " + whichMovement.length);
   // Stop updating array
   whichMovement = null;
 }
@@ -57,53 +54,57 @@ function answerChosen() {
 // CHANGING TEXT STUFF
 // To keep track of which question the user is on
 var questionCount = 0;
+var answerPicked = false;
 
 function changeText() {
-  // Reset button colors
-  document.getElementById("yesButton").className = "button fit";
-  document.getElementById("naButton").className = "button fit";
-  document.getElementById("noButton").className = "button fit";
+  if (answerPicked == true) {
+    answerPicked = false;
+    
+    // Reset button colors
+    document.getElementById("yesButton").className = "button fit";
+    document.getElementById("naButton").className = "button fit";
+    document.getElementById("noButton").className = "button fit";
 
-  // Changes the text question
-  if (questionCount == 0) {
-    document.getElementById("questionText").innerHTML = "Did you apply to Rice University?";
-  } else if (questionCount == 1) {
-    document.getElementById("questionText").innerHTML = "Was your first pet a hamster?";
-  } else if (questionCount == 2) {
-    document.getElementById("questionText").innerHTML = "Were you born in Houston?";
-  } else if (questionCount == 3) {
-    document.getElementById("questionText").innerHTML = "Was Google the first company you worked for?";
-  } else if (questionCount == 4) {
-    document.getElementById("questionText").innerHTML = "Was your first car a Honda Accord?";
-  } else {
-    // Display results after 5 questions
-    doResults();
-  }
- // Increment questionCount
-  questionCount++;
+    // Changes the text question
+    if (questionCount == 0) {
+      document.getElementById("questionText").innerHTML = "Did you apply to Rice University?";
+    } else if (questionCount == 1) {
+      document.getElementById("questionText").innerHTML = "Was your first pet a hamster?";
+    } else if (questionCount == 2) {
+      document.getElementById("questionText").innerHTML = "Were you born in Houston?";
+    } else if (questionCount == 3) {
+      document.getElementById("questionText").innerHTML = "Was Google the first company you worked for?";
+    } else if (questionCount == 4) {
+      document.getElementById("questionText").innerHTML = "Was your first car a Honda Accord?";
+    } else {
+      // Display results after 5 questions
+      doResults();
+    }
+   // Increment questionCount
+    questionCount++;
 
-  alert("whichMovement: " + whichMovement);
-  // Change which array to update
-  if(questionCount == 1) {
-    whichMovement = movement2;
-  } else if(questionCount == 2) {
-    whichMovement = movement3;
-  } else if(questionCount == 3) {
-    whichMovement = movement4;
-  } else if(questionCount == 4) {
-    whichMovement = movement5;
-  } else {
-    whichMovement = null;
+    // Change which array to update
+    if(questionCount == 1) {
+      whichMovement = movement2;
+    } else if(questionCount == 2) {
+      whichMovement = movement3;
+    } else if(questionCount == 3) {
+      whichMovement = movement4;
+    } else if(questionCount == 4) {
+      whichMovement = movement5;
+    } else {
+      whichMovement = null;
+    }
   }
-  alert("questionCount: " + questionCount);
-  alert("whichMovement: " + whichMovement);
+
 }
 
 function changeButtonColor(id) {
   // Toggles button color on click
 
   // End mouse tracking
-  answerChosen();
+  //answerChosen();
+  answerPicked = true;
 
   // Reset all other Buttons
   document.getElementById("yesButton").className = "button fit";
