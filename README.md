@@ -1,2 +1,4 @@
-# confidence_frontend
-front end for http://www.projectconfidence.space/
+# Project Confidence
+Front end for http://www.projectconfidence.space/
+
+Built with HTML5, CSS3, Javascript, and jQuery
